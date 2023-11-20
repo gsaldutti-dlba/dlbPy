@@ -10,7 +10,7 @@ def formatSF(response):
          # Create a DataFrame from the 'records' list
         df = pd.DataFrame.from_records(response).drop(columns='attributes', errors='ignore')
         
-    else if ((type(response) == dict)&('records' in response.keys())):
+    elif ((type(response) == dict)&('records' in response.keys())):
         # Create a DataFrame from the 'records' list
         df = pd.DataFrame.from_records(response['records']).drop(columns='attributes', errors='ignore')
 
