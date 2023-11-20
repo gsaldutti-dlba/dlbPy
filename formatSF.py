@@ -5,13 +5,17 @@ def formatSF(response):
         response (query dataframe): Cleans salesforce response and format to df
     """
     
-    if ((type(response) == dict)&('records' in response.keys())):
+    #if ((type(response) == dict)&('records' in response.keys())):
+    if type(response) == list:
          # Create a DataFrame from the 'records' list
-        df = pd.DataFrame.from_records(response['records']).drop(columns='attributes', errors='ignore')
-    else:
-        # Create a DataFrame from the 'records' list
         df = pd.DataFrame.from_records(response).drop(columns='attributes', errors='ignore')
+        
+    else if ((type(response) == dict)&('records' in response.keys())):
+        # Create a DataFrame from the 'records' list
+        df = pd.DataFrame.from_records(response['records']).drop(columns='attributes', errors='ignore')
 
+    else:
+        print('Unknown type, check data type')
     # Initialize an empty list to store nested DataFrames
     nested_cols = []
 
